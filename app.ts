@@ -11,7 +11,7 @@ app.use('/api/rest/find', FindsRoutes);
 
 app.all('*' , (req , res)=>{
     res.status(404).json({
-        message : "Our API Endpoints is at '/api/rest/find'!"
+        message : "Our API Endpoints is at '/api/rest/find' 📦 !"
     })
 })
 export default app;
