@@ -11,7 +11,7 @@ app.use('/api/rest/', MusicsRoutes);
 
 app.all('*' , (req , res)=>{
     res.status(404).json({
-        message : "Our API Endpoints is at '/api/rest' 📦 !"
+        message : "Error : Route not Handled"
     })
 })
 
