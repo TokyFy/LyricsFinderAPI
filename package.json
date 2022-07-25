@@ -5,16 +5,19 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js"
+    "start": "node dist/index.js",
+    "dev" : "nodemon index.ts"
   },
   "author": "toky",
   "license": "ISC",
   "dependencies": {
     "@types/express": "^4.17.13",
     "@types/morgan": "^1.9.3",
+    "163-music": "^0.0.2",
     "express": "^4.18.1",
     "genius-lyrics": "^4.3.8",
     "morgan": "^1.10.0",
+    "simple-netease-cloud-music": "^0.5.2",
     "typescript": "^4.7.4"
   },
   "devDependencies": {
