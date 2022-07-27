@@ -1,57 +1,61 @@
 import NeteaseMusic from "simple-netease-cloud-music";
-import {IAlbum, IMusicFinder, ISongs , ILyrics ,IArtist} from "./index";
+import {IAlbum, IMusicFinder, ISongs, ILyrics, IArtist} from "./musicService";
 
 
 interface IRawSearch {
-    result : {
-        songs : IRawSong[],
+    result: {
+        songs: IRawSong[],
     }
 }
+
 interface IRawSong {
-    name : string,
-    id : string,
-    ar : {
-        id : string ,
-        name : string
+    name: string,
+    id: string,
+    ar: {
+        id: string,
+        name: string
     }[],
-    al : {
-        id :string,
-        name :string,
-        picUrl? : string,
-        pic_str : string
+    al: {
+        id: string,
+        name: string,
+        picUrl?: string,
+        pic_str: string
     },
-    publishTime : number,
-    cd? : string,
+    publishTime: number,
+    cd?: string,
 }
+
 interface IRawArtist {
-    artist : {
-        musicSize : number,
-        albumSize : number,
-        picUrl : string,
-        name : string,
-        id : number,
+    artist: {
+        musicSize: number,
+        albumSize: number,
+        picUrl: string,
+        name: string,
+        id: number,
     }
-    hotSongs : IRawSong[];
+    hotSongs: IRawSong[];
 }
+
 interface IRawAlbum {
-    songs : IRawSong[],
-    album : {
-        name : string,
-        id : string,
-        picUrl : string,
-        company : string,
-        artists : {
+    songs: IRawSong[],
+    album: {
+        name: string,
+        id: string,
+        picUrl: string,
+        company: string,
+        artists: {
             name: string,
-            id : string,
-            img1v1Url : string
+            id: string,
+            img1v1Url: string
         }[],
-        songs : IRawSong[]
+        songs: IRawSong[]
     }
 }
+
 interface IRawLyrics {
-    lrc : {
-        version : number,
-        lyric : string,
+    lrc: {
+        version: number,
+        lyric: string,
     }
 }
 
@@ -64,9 +68,9 @@ export class NeteaseFinder implements IMusicFinder {
     }
 
     async search(query: string): Promise<ISongs[]> {
-        const data = await this.nm.search(query , 1 , 5) as IRawSearch;
+        const data = await this.nm.search(query, 1, 5) as IRawSearch;
 
-        return data.result.songs.map((song ) => {
+        return data.result.songs.map((song) => {
             const Title = song.name;
             const songID = song.id;
 
@@ -106,19 +110,19 @@ export class NeteaseFinder implements IMusicFinder {
 
         const artists = data.album.artists.map((el) => {
             return {
-                id : el.id,
-                name : el.name,
-                picUrl : el.img1v1Url
+                id: el.id,
+                name: el.name,
+                picUrl: el.img1v1Url
             }
         });
 
-        const songs:ISongs[] = data.songs.map((el) => {
+        const songs: ISongs[] = data.songs.map((el) => {
             return {
-                id : el.id,
-                AlbumArts : AlbumArt,
-                Album : {name : AlbumTitle , id: AlbumId},
-                title : el.name,
-                Artists : el.ar
+                id: el.id,
+                AlbumArts: AlbumArt,
+                Album: {name: AlbumTitle, id: AlbumId},
+                title: el.name,
+                Artists: el.ar
             }
         })
 
@@ -140,16 +144,16 @@ export class NeteaseFinder implements IMusicFinder {
         const albumSize = data.artist.albumSize;
         const picUrl = data.artist.picUrl;
 
-        const hotSongs = data.hotSongs.map((el ) => {
+        const hotSongs = data.hotSongs.map((el) => {
             return {
-                title : el.name,
-                id : el.id,
-                Artists : el.ar,
-                Album : {
-                    id : el.al.id,
-                    name : el.al.name,
+                title: el.name,
+                id: el.id,
+                Artists: el.ar,
+                Album: {
+                    id: el.al.id,
+                    name: el.al.name,
                 },
-                AlbumArtsID : el.al.pic_str,
+                AlbumArtsID: el.al.pic_str,
             }
         })
 
@@ -159,7 +163,7 @@ export class NeteaseFinder implements IMusicFinder {
             picUrl: picUrl,
             musicSize: musicSize,
             albumSize: albumSize,
-            hotSong : hotSongs
+            hotSong: hotSongs
         };
     }
 

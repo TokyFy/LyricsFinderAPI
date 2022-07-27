@@ -1,7 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 
-const MusicsRoutes = require('./Routes/SearchRoute');
+const MusicsRoutes = require('./Routes/MusicsRoute');
 
 const app = express();
 

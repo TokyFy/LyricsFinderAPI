@@ -1,7 +1,7 @@
 import express from 'express';
 import {song, album, artist, lyric} from "../controllers/MusicControlers";
 
-const { searchMusic } = require('../controllers/MusicControlers');
+const {searchMusic} = require('../controllers/MusicControlers');
 
 const router = express.Router();
 
