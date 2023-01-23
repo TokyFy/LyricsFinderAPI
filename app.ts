@@ -1,5 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
+import * as path from "path";
 
 const MusicsRoutes = require('./Routes/MusicsRoute');
 
@@ -10,9 +11,7 @@ app.use(morgan("dev"))
 app.use('/api/rest/', MusicsRoutes);
 
 app.all('*' , (req , res)=>{
-    res.status(404).json({
-        message : "Error : Route not Handled"
-    })
+    res.status(404).sendFile(path.join(__dirname, './Page/404/404.html'));
 })
 
 export default app;
