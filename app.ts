@@ -1,10 +1,13 @@
 import express from 'express';
 import morgan from 'morgan';
 import * as path from "path";
+import cors from "cors";
 
 const MusicsRoutes = require('./Routes/MusicsRoute');
 
 const app = express();
+
+app.use(cors())
 
 app.use(morgan("dev"))
 
