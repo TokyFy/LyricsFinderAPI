@@ -104,4 +104,24 @@ const lyric : RequestHandler = async (req , res) =>{
     }
 }
 
-export {searchMusic , song , album , artist , lyric};
+
+const picture : RequestHandler  = async (req , res) =>{
+    try {
+        const id = req.params.id;
+        const picture =  await finder.albumCover(id);
+
+        res.status(200).json({
+            status: 'success',
+            data: {
+                picture
+            }
+        })
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({
+            status: 'failed',
+            error: `Failed to find AlbumCover with de ID : ${req.params.id}`
+        })
+    }
+}
+export {searchMusic , song , album , artist , lyric , picture};

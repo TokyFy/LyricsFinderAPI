@@ -31,6 +31,10 @@ export interface ILyrics {
     lyric: string
 }
 
+export interface IAlbumCovers {
+    url : string
+}
+
 export * from './NeteaseFinder';
 
 export interface IMusicFinder {

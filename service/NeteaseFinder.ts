@@ -1,5 +1,5 @@
 import NeteaseMusic from "simple-netease-cloud-music";
-import {IAlbum, IMusicFinder, ISongs, ILyrics, IArtist} from "./musicService";
+import {IAlbum, IMusicFinder, ISongs, ILyrics, IArtist, IAlbumCovers} from "./musicService";
 
 
 interface IRawSearch {
@@ -59,6 +59,9 @@ interface IRawLyrics {
     }
 }
 
+interface IRawPictures {
+    url : string
+}
 
 export class NeteaseFinder implements IMusicFinder {
     private nm: NeteaseMusic;
@@ -176,5 +179,11 @@ export class NeteaseFinder implements IMusicFinder {
             version: version,
             lyric: lyrics
         }
+    }
+
+    async albumCover (id : string) : Promise<IAlbumCovers> {
+        const data = await this.nm.picture(id) as IAlbumCovers;
+
+        return data;
     }
 }
