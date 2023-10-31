@@ -71,7 +71,7 @@ export class NeteaseFinder implements IMusicFinder {
     }
 
     async search(query: string): Promise<ISongs[]> {
-        const data = await this.nm.search(query, 1, 5) as IRawSearch;
+        const data = await this.nm.search(query, 1, 10) as IRawSearch;
 
         return data.result.songs.map((song) => {
             const Title = song.name;
